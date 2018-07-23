@@ -1,0 +1,91 @@
+.legal-form-dialog {
+    position: absolute;
+    height: auto;
+    width: 60%;
+    top: 20%;
+    left: 20%;
+    background: white;
+    display: none;
+    z-index: 101;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 2px;
+    box-sizing: border-box;
+    font-family: Arial,Helvetica,sans-serif;
+}
+.legal-form-dialog button {
+    border: 1px solid #c5c5c5;
+    background: #f6f6f6;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+    color: #454545;
+    font-weight: normal;
+    text-decoration: none;
+}
+.legal-form-dialog button:hover {
+    border: 1px solid #ccc;
+    background: #ededed;
+    color: #2b2b2b;
+}
+.legal-form-dialog .legal-form-topbar {
+    position: relative;
+    width: 100%;
+    background-color: rgb(233, 233, 233);
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #333;
+    font-weight: 700;
+}
+.legal-form-dialog .legal-form-topbar button {
+    position: absolute;
+    right: .3em;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    margin-top: -10px;
+    padding: 0;
+}
+.legal-form-dialog .legal-form-content {
+    display: block;
+    width: auto;
+    min-height: 29px;
+    max-height: none;
+    height: auto;
+    padding: 10px;
+}
+.legal-form-dialog .legal-form-content table td {
+    padding: 1px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+.legal-form-dialog .legal-form-content table td:nth-child(odd) {
+    font-weight: 700;
+}
+.legal-form-dialog .legal-form-bottombar {
+    position: relative;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 50px;
+}
+.legal-form-dialog .legal-form-bottombar button {
+    padding: .4em 1em;
+    display: inline-block;
+    position: relative;
+    line-height: normal;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: visible;
+    margin: 0;
+    float: right;
+    height: 100%;
+}
