@@ -1,18 +1,15 @@
-var Utils = {
-    getRandomId: function() {
-        var id = 'legal-form-dialog-';
-        var alphabet = [
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-        ];
-        return id + [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            .map(n => alphabet[Math.floor(Math.random() * alphabet.length)])
-            .join('');
-    }
-}
+String.getRandom = function(n) {
+    var alphabet = [
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    ];
+    return Array.apply(null, {length: n})
+        .map(n => alphabet[Math.floor(Math.random() * alphabet.length)])
+        .join('');
+};
 
 HTMLElement.prototype.findAncestor = function(tagName) {
     var parent = this.parentElement;
@@ -42,7 +39,7 @@ var deepClone = function(node) {
 var Dialog = function(options, form) {
     var _this = this;
 
-    _this.id = Utils.getRandomId();
+    _this.id = 'legal-form-dialog-' + String.getRandom(16);
 
     _this.create = function() {
         var template = document.getElementsByClassName('legal-form-dialog')[0];
