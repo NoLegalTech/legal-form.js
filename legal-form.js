@@ -21,23 +21,10 @@ HTMLElement.prototype.findAncestor = function(tagName) {
     return null;
 };
 
-var deepClone = function(node) {
-    if (!node.children || node.children.length == 0) {
-        var copy = node.cloneNode();
-        if (node.innerText != '') {
-            copy.innerText = node.innerText;
-        }
-        return copy;
-    }
-    var copy = node.cloneNode();
-    for (var i = 0; i < node.children.length; i++) {
-        copy.appendChild(deepClone(node.children[i]));
-    }
-    return copy;
-};
-
 HTMLElement.prototype.clone = function() {
-    return deepClone(this);
+    var copy = this.cloneNode();
+    copy.innerHTML = this.innerHTML;
+    return copy;
 };
 
 var Dialog = function(options, form) {
@@ -48,14 +35,14 @@ var Dialog = function(options, form) {
     _this.create = function() {
         var template = document.getElementsByClassName('legal-form-dialog')[0];
 
-        var dialog = deepClone(template);
+        var dialog = template.clone();
         var table = dialog.children[1].children[1].children[0];
         var rowTemplate = table.children[0];
 
         table.removeChild(rowTemplate);
 
         for (var i = 0; i < options.info.length; i++) {
-            var newRow = deepClone(rowTemplate);
+            var newRow = rowTemplate.clone();
             newRow.children[0].innerText = options.info[i].label;
             newRow.children[1].innerText = options.info[i].description;
             newRow.children[2].children[0].setAttribute('href', options.info[i].additional_info);
@@ -124,6 +111,8 @@ var LegalForm = function(options = {}) {
             var dialog = document.getElementById(theDialog.id);
             dialog.style.display = 'block';
         }
+
+        _this.dialog = theDialog;
     };
 
     window.addEventListener("DOMContentLoaded", function() {
