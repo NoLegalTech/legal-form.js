@@ -46,38 +46,76 @@ var Dialog = function(options, form) {
     _this.id = 'legal-form-dialog-' + String.getRandom(16);
 
     _this.create = function() {
-        var template = document.getElementsByClassName('legal-form-dialog')[0];
+        var dialog = document.createElement('div');
+        dialog.className = 'legal-form-dialog';
+        dialog.style.display = 'none';
 
-        var dialog = template.clone();
-        var table = dialog.children[1].children[1].children[0];
-        var rowTemplate = table.children[0];
+        var topbar = document.createElement('div');
+        topbar.className = 'legal-form-topbar';
 
-        table.removeChild(rowTemplate);
+        var spanTitle = document.createElement('span');
+        spanTitle.innerText = options.dialogTitle;
 
+        var buttonClose = document.createElement('button');
+        buttonClose.title = 'Close';
+        buttonClose.innerText = ' X ';
+
+        var content = document.createElement('div');
+        content.className = 'legal-form-content';
+
+        var h3Title = document.createElement('h3');
+        h3Title.innerText = options.tableTitle;
+
+        var table = document.createElement('table');
+        var tbody = document.createElement('tbody');
         for (var i = 0; i < options.info.length; i++) {
-            var newRow = rowTemplate.clone();
-            newRow.children[0].innerText = options.info[i].label;
-            newRow.children[1].innerText = options.info[i].description;
-            newRow.children[2].children[0].setAttribute('href', options.info[i].additional_info);
-            table.appendChild(newRow);
+            var newRow = document.createElement('tr');
+
+            var td = document.createElement('td');
+            td.innerText = options.info[i].label;
+            newRow.appendChild(td);
+
+            td = document.createElement('td');
+            td.innerText = options.info[i].description;
+            newRow.appendChild(td);
+
+            td = document.createElement('td');
+            a = document.createElement('a');
+            a.setAttribute('href', options.info[i].additional_info)
+            a.innerText = '+info';
+            td.appendChild(a);
+            newRow.appendChild(td);
+
+            newRow.children[1].innerText
+            newRow.children[2].children[0].setAttribute;
+            tbody.appendChild(newRow);
         }
+        table.appendChild(tbody);
 
-        dialog.setAttribute('id', _this.id);
+        var bottombar = document.createElement('div');
+        bottombar.className = 'legal-form-bottombar';
 
-        document.body.append(dialog);
+        var buttonAccept = document.createElement('button');
+        buttonAccept.type = 'button';
+        buttonAccept.innerText = options.submitText;
 
-        dialog.children[0].children[0].innerText = options.dialogTitle;
-        dialog.children[1].children[0].innerText = options.tableTitle;
-        dialog.children[2].children[0].innerText = options.submitText;
+        topbar.appendChild(spanTitle);
+        topbar.appendChild(buttonClose);
 
-        var cancelButton = dialog.children[0].children[1];
-        var okButton = dialog.children[2].children[0];
+        content.appendChild(h3Title);
+        content.appendChild(table);
 
-        cancelButton.onclick = function(e) {
+        bottombar.appendChild(buttonAccept);
+
+        dialog.appendChild(topbar);
+        dialog.appendChild(content);
+        dialog.appendChild(bottombar);
+
+        buttonClose.onclick = function(e) {
             dialog.style.display = 'none';
         }
 
-        okButton.onclick = function(e) {
+        buttonAccept.onclick = function(e) {
             form.submit();
         }
 
