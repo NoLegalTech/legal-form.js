@@ -14,14 +14,18 @@ var Utils = {
     }
 }
 
-var getFormOfButton = function(button) {
-    var form = button.parentElement;
-    while (form != null) {
-        if (form.tagName.toLowerCase() == 'form') {
-            return form;
+HTMLElement.prototype.findAncestor = function(tagName) {
+    var parent = this.parentElement;
+    while (parent != null) {
+        if (parent.tagName.toLowerCase() == tagName.toLowerCase()) {
+            return parent;
         }
     }
     return null;
+};
+
+var getFormOfButton = function(button) {
+    return button.findAncestor('form');
 };
 
 var deepClone = function(node) {

@@ -20,4 +20,19 @@ describe("Utils", function() {
         expect(getFormOfButton(theButton)).toEqual(null);
     });
 
+    it("HTMLElement.findAncestor() returns ancestor if it exists", function() {
+        var theForm = document.createElement('form');
+        var theButton = document.createElement('button');
+        theForm.appendChild(theButton);
+
+        expect(theButton.findAncestor('form')).toEqual(theForm);
+    });
+
+    it("HTMLElement.findAncestor() returns null if it does not exist", function() {
+        var theForm = document.createElement('form');
+        var theButton = document.createElement('button');
+
+        expect(theButton.findAncestor('form')).toEqual(null);
+    });
+
 });
