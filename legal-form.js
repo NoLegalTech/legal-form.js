@@ -83,7 +83,7 @@ var Dialog = function(options, form) {
     return _this.create();
 }
 
-var LegalForm = function(options) {
+var LegalForm = function(options = {}) {
     var _this = this;
 
     options.submitText  = options.submitText  || 'Aceptar y registrarme';
