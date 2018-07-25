@@ -19,23 +19,20 @@ describe("HTMLElement", function() {
 
     });
 
-    describe("String.getRandom(N)", function() {
+    describe("clone()", function() {
 
-        it("returns a string of length N", function() {
-            expect(String.getRandom(2).length).toEqual(2);
-            expect(String.getRandom(9).length).toEqual(9);
-            expect(String.getRandom(20).length).toEqual(20);
-            expect(String.getRandom(52).length).toEqual(52);
-        });
+        it("copies the whole element with children", function() {
+            var aDiv = document.createElement('div');
+            aDiv.appendChild(document.createElement('p'));
+            aDiv.appendChild(document.createElement('h2'));
+            aDiv.appendChild(document.createElement('ul'));
 
-        it("returns a different string each time", function() {
-            expect(String.getRandom(10)).not.toEqual(String.getRandom(10));
-            expect(String.getRandom(20)).not.toEqual(String.getRandom(20));
-        });
-
-        it("returns a string consisting in alphanumeric characters", function() {
-            expect(/[^a-zA-Z0-9]/.test(String.getRandom(10))).toEqual(false);
-            expect(/[^a-zA-Z0-9]/.test(String.getRandom(20))).toEqual(false);
+            var theCopy = aDiv.clone();
+            expect(theCopy.tagName).toEqual('DIV');
+            expect(theCopy.children.length).toEqual(3);
+            expect(theCopy.children[0].tagName).toEqual('P');
+            expect(theCopy.children[1].tagName).toEqual('H2');
+            expect(theCopy.children[2].tagName).toEqual('UL');
         });
 
     });

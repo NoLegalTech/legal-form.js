@@ -1,6 +1,6 @@
 describe("LegalForm", function() {
 
-    describe("construtor", function() {
+    describe("constructor", function() {
 
         it("throws error if no button", function() {
             try {

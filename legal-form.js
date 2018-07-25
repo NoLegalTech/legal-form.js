@@ -36,6 +36,10 @@ var deepClone = function(node) {
     return copy;
 };
 
+HTMLElement.prototype.clone = function() {
+    return deepClone(this);
+};
+
 var Dialog = function(options, form) {
     var _this = this;
 
