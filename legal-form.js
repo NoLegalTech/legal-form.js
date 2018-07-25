@@ -24,10 +24,6 @@ HTMLElement.prototype.findAncestor = function(tagName) {
     return null;
 };
 
-var getFormOfButton = function(button) {
-    return button.findAncestor('form');
-};
-
 var deepClone = function(node) {
     if (!node.children || node.children.length == 0) {
         var copy = node.cloneNode();
@@ -112,7 +108,7 @@ var LegalForm = function(options) {
             throw new Error(`Button to trigger the legal form (${options.button}) not found!`);
         }
 
-        var theForm = getFormOfButton(theButton);
+        var theForm = theButton.findAncestor('form');
 
         if (!theForm) {
             throw new Error(`Cannot find form to submit for button (${options.button})!`);

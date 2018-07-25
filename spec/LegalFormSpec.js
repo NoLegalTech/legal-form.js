@@ -5,21 +5,6 @@ describe("Utils", function() {
         expect(Utils.getRandomId().substring(0, expectedStart.length)).toEqual(expectedStart);
     });
 
-    it("getFormOfButton() returns form of a button", function() {
-        var theForm = document.createElement('form');
-        var theButton = document.createElement('button');
-        theForm.appendChild(theButton);
-
-        expect(getFormOfButton(theButton)).toEqual(theForm);
-    });
-
-    it("getFormOfButton() returns null if form not found", function() {
-        var theForm = document.createElement('form');
-        var theButton = document.createElement('button');
-
-        expect(getFormOfButton(theButton)).toEqual(null);
-    });
-
     it("HTMLElement.findAncestor() returns ancestor if it exists", function() {
         var theForm = document.createElement('form');
         var theButton = document.createElement('button');
