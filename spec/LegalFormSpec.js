@@ -13,4 +13,11 @@ describe("Utils", function() {
         expect(getFormOfButton(theButton)).toEqual(theForm);
     });
 
+    it("getFormOfButton() returns null if form not found", function() {
+        var theForm = document.createElement('form');
+        var theButton = document.createElement('button');
+
+        expect(getFormOfButton(theButton)).toEqual(null);
+    });
+
 });
