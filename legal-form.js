@@ -1,3 +1,6 @@
+  /********************************************/
+ /*  String                                  */
+/********************************************/
 String.getRandom = function(n) {
     var alphabet = [
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -10,7 +13,12 @@ String.getRandom = function(n) {
         .map(n => alphabet[Math.floor(Math.random() * alphabet.length)])
         .join('');
 };
+/********************************************/
 
+
+  /********************************************/
+ /*  HTMLElement                             */
+/********************************************/
 HTMLElement.prototype.findAncestor = function(tagName) {
     var parent = this.parentElement;
     while (parent != null) {
@@ -26,7 +34,12 @@ HTMLElement.prototype.clone = function() {
     copy.innerHTML = this.innerHTML;
     return copy;
 };
+/********************************************/
 
+
+  /********************************************/
+ /*  Dialog                                  */
+/********************************************/
 var Dialog = function(options, form) {
     var _this = this;
 
@@ -68,12 +81,19 @@ var Dialog = function(options, form) {
             form.submit();
         }
 
+        _this.dialog = dialog;
+
         return _this;
     };
 
     return _this.create();
 }
+/********************************************/
 
+
+  /********************************************/
+ /*  LegalForm                               */
+/********************************************/
 var LegalForm = function(options = {}) {
     var _this = this;
 
