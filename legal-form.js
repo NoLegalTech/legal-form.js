@@ -43,8 +43,6 @@ HTMLElement.prototype.clone = function() {
 var Dialog = function(options, form) {
     var _this = this;
 
-    _this.id = 'legal-form-dialog-' + String.getRandom(16);
-
     _this.create = function() {
         var dialog = document.createElement('div');
         dialog.className = 'legal-form-dialog';
@@ -119,6 +117,8 @@ var Dialog = function(options, form) {
             form.submit();
         }
 
+        document.body.appendChild(dialog);
+
         _this.dialog = dialog;
 
         return _this;
@@ -162,11 +162,9 @@ var LegalForm = function(options = {}) {
 
         var theDialog = new Dialog(options, theForm);
 
-        theButton.setAttribute('data-dialog-id', theDialog.id);
-
         theButton.onclick = function(e) {
             e.preventDefault();
-            var dialog = document.getElementById(theDialog.id);
+            var dialog = document.getElementsByClassName('legal-form-dialog')[0];
             dialog.style.display = 'block';
         }
 
