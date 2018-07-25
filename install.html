@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es-ES" class="no-js no-svg">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> legal-form.js | install </title>
+        <link rel="stylesheet" href="css/legal-form.css" type="text/css" charset="utf-8" />
+        <link rel="stylesheet" href="css/showcase.css" type="text/css" charset="utf-8" />
+    </head>
+
+    <body>
+
+        <article id="showcase">
+            <h1>Configure your legal info dialog here:</h1>
+            <form name="register_form" method="post">
+
+                <label for="form_buttonId"> Id of button to affect: </label>
+                <input type="buttonId" id="form_buttonId" name="buttonId" placeholder='register-button'>
+
+                <label for="form_dialogTitle">Dialog title: </label>
+                <input type="dialogTitle" id="form_dialogTitle" name="dialogTitle" placeholder='Antes de registrarte revisa que estás de acuerdo con esto'>
+
+                <label for="form_submitText"> Text in the button: </label>
+                <input type="submitText" id="form_submitText" name="submitText" placeholder='Aceptar y registrarme'>
+
+                <label for="form_tableTitle"> Table title: </label>
+                <input type="tableTitle" id="form_tableTitle" name="tableTitle" placeholder='Información básica sobre protección de datos'>
+
+                <input id="example-button" type="submit" value="Example dialog">
+
+                <input id="generate-code-button" type="submit" value="Generate code">
+
+                <label for="form_code"> Code: </label>
+                <textarea id="form_code"></textarea>
+
+            </form>
+        </article>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", function() {
+                document.getElementById('generate-code-button').onclick = function(e) {
+                    e.preventDefault();
+                    document.getElementById('form_code').innerText =
+                        '    <script src="./legal-form.js"><\/script>' +
+                        '    <script>' +
+                        '        new LegalForm({' +
+                        '            button: "example-button",' +
+                        '            submitText: "Aceptar y registrarme",' +
+                        '            dialogTitle: "Antes de registrarte revisa que estás de acuerdo con esto",' +
+                        '            tableTitle: "Información básica sobre protección de datos",' +
+                        '            info: [' +
+                        '                {' +
+                        '                    label: "Responsable",' +
+                        '                    description: "Fulanito de Tal, S.L.",' +
+                        '                    additional_info: "http://www.google.es"' +
+                        '                },' +
+                        '                {' +
+                        '                    label: "Finalidad",' +
+                        '                    description: "Prestación del servicio",' +
+                        '                    additional_info: "http://www.google.es"' +
+                        '                },' +
+                        '                {' +
+                        '                    label: "Legitimación",' +
+                        '                    description: "Consentimiento del interesado",' +
+                        '                    additional_info: "http://www.google.es"' +
+                        '                },' +
+                        '                {' +
+                        '                    label: "Destinatarios",' +
+                        '                    description: "Google Analytics y terceros por obligación legal",' +
+                        '                    additional_info: "http://www.google.es"' +
+                        '                },' +
+                        '                {' +
+                        '                    label: "Derechos",' +
+                        '                    description: "Acceder, rectificar y suprimir los datos, así como otros derechos, como se explica en la información adicional",' +
+                        '                    additional_info: "http://www.google.es"' +
+                        '                },' +
+                        '                {' +
+                        '                    label: "Información Adicional",' +
+                        '                    description: "Puede consultar la información adicional y detallada sobre Protección de datos en nuestra política de privacidad",' +
+                        '                    additional_info: "http://www.google.es"' +
+                        '                }' +
+                        '            ]' +
+                        '        });' +
+                        '    <\/script>'
+                    ;
+                };
+            }, false);
+        </script>
+
+        <a href="install.html">Install it now on your website</a>
+
+        <script src="./legal-form.js"></script>
+        <script>
+            new LegalForm({
+                button: 'example-button',
+                submitText: 'Aceptar y registrarme',
+                dialogTitle: 'Antes de registrarte revisa que estás de acuerdo con esto',
+                tableTitle: 'Información básica sobre protección de datos',
+                info: [
+                    {
+                        label: 'Responsable',
+                        description: 'Fulanito de Tal, S.L.',
+                        additional_info: 'http://www.google.es'
+                    },
+                    {
+                        label: 'Finalidad',
+                        description: 'Prestación del servicio',
+                        additional_info: 'http://www.google.es'
+                    },
+                    {
+                        label: 'Legitimación',
+                        description: 'Consentimiento del interesado',
+                        additional_info: 'http://www.google.es'
+                    },
+                    {
+                        label: 'Destinatarios',
+                        description: 'Google Analytics y terceros por obligación legal',
+                        additional_info: 'http://www.google.es'
+                    },
+                    {
+                        label: 'Derechos',
+                        description: 'Acceder, rectificar y suprimir los datos, así como otros derechos, como se explica en la información adicional',
+                        additional_info: 'http://www.google.es'
+                    },
+                    {
+                        label: 'Información Adicional',
+                        description: 'Puede consultar la información adicional y detallada sobre Protección de datos en nuestra política de privacidad',
+                        additional_info: 'http://www.google.es'
+                    }
+                ]
+            });
+        </script>
+    </body>
+
+</html>
