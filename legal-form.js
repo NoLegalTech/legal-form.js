@@ -20,8 +20,9 @@ String.getRandom = function(n) {
  /*  HTMLElement                             */
 /********************************************/
 HTMLElement.prototype.findAncestor = function(tagName) {
-    var parent = this.parentElement;
-    while (parent != null) {
+    var parent = this.parentElement, maxIter = 10;
+    while (parent != null && maxIter > 0) {
+        maxIter--;
         if (parent.tagName.toLowerCase() == tagName.toLowerCase()) {
             return parent;
         }
@@ -134,30 +135,40 @@ var Dialog = function(options, form) {
 /********************************************/
 var LegalForm = function(options = {}) {
     var _this = this;
+    _this.errors = [];
+
+    _this.error = function(message) {
+        _this.errors.push(message);
+        console.error(message);
+    };
 
     options.submitText  = options.submitText  || 'Aceptar y registrarme';
     options.dialogTitle = options.dialogTitle || 'Antes de registrarte revisa que estás de acuerdo con esto';
     options.tableTitle  = options.tableTitle  || 'Información básica sobre protección de datos';
 
     if (!options.button) {
-        throw new Error('No button was defined to trigger the legal form!');
+        _this.error('No button was defined to trigger the legal form!');
+        return _this;
     }
 
     if (!options.info || options.info.length == 0) {
-        throw new Error('No info was defined to show in the legal form!');
+        _this.error('No info was defined to show in the legal form!');
+        return _this;
     }
 
     _this.init = function() {
         var theButton = document.getElementById(options.button);
 
         if (!theButton) {
-            throw new Error(`Button to trigger the legal form (${options.button}) not found!`);
+            _this.error(`Button to trigger the legal form (${options.button}) not found!`);
+            return _this;
         }
 
         var theForm = theButton.findAncestor('form');
 
         if (!theForm) {
-            throw new Error(`Cannot find form to submit for button (${options.button})!`);
+            _this.error(`Cannot find form to submit for button (${options.button})!`);
+            return _this;
         }
 
         var theDialog = new Dialog(options, theForm);
